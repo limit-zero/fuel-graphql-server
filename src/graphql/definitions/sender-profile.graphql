@@ -1,0 +1,13 @@
+type Query {
+  SenderProfiles: [SenderProfile]!
+}
+
+type SenderProfile {
+  ObjectID: ID!
+  CustomerKey: String
+
+  Name: String!
+  FromName: String!
+  FromAddress: String!
+  Description: String
+}

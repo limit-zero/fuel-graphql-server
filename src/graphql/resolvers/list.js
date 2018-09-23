@@ -17,11 +17,9 @@ module.exports = {
    *
    */
   Query: {
-    List: async (_, { input }) => {
+    List: (_, { input }) => {
       const { ObjectID } = input;
-      const list = await fuel.findByObjectId('List', ObjectID);
-      console.info(list);
-      return list;
+      return fuel.findByObjectId('List', ObjectID);
     },
   },
 };
