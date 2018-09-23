@@ -3,6 +3,8 @@
 
 directive @booleanValue(localField: String) on FIELD_DEFINITION
 
+scalar JSON
+
 type Query {
   ping: String!
 }

@@ -1,6 +1,6 @@
 type Query {
   DataFolder(input: ObjectIDInput!): DataFolderInterface
-  AllDataFolders(input: AllDataFoldersQueryInput = {}): [DataFolderInterface]!
+  DataFolders(input: DataFoldersQueryInput = {}): [DataFolderInterface]!
   DataFolderDataExtension(input: ObjectIDInput!): DataFolderDataExtension
 }
 
@@ -54,8 +54,8 @@ type DataFolderDataExtension implements DataFolderInterface {
   DataExtensions(input: DataFolderDataExtensionsInput = {}): [DataExtension]!
 }
 
-input AllDataFoldersQueryInput {
-  rootOnly: Boolean = false
+input DataFoldersQueryInput {
+  filter: JSON
 }
 
 input DataFolderDataExtensionsInput {

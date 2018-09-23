@@ -47,8 +47,9 @@ module.exports = {
     /**
      *
      */
-    AllDataFolders: async () => {
-      const results = await fuel.find('DataFolder', {
+    DataFolders: async (_, { input }) => {
+      const { filter } = input;
+      const results = await fuel.find('DataFolder', filter || {
         leftOperand: 'ParentFolder.ID',
         operator: 'equals',
         rightOperand: 0,
