@@ -21,6 +21,11 @@ module.exports = {
     'IsTestable',
     'Name',
   ],
+  DataExtensionField: [
+    'ObjectID',
+    'Name',
+    'FieldType',
+  ],
   FilterDefinition: [
     'ObjectID',
     'CustomerKey',

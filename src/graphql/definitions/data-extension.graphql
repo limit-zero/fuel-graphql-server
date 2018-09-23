@@ -12,5 +12,14 @@ type DataExtension {
   Name: String!
   CategoryID: String!
 
+  Fields: [DataExtensionField]!
   Folder: DataFolder!
+  Rows: [JSON]!
+}
+
+type DataExtensionField {
+  ObjectID: ID!
+
+  Name: String!
+  FieldType: String
 }
