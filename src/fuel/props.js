@@ -1,0 +1,31 @@
+module.exports = {
+  dataFolder: [
+    'ObjectID',
+    'ID',
+    'CustomerKey',
+    'AllowChildren',
+    'ContentType',
+    'Description',
+    'Name',
+    'ParentFolder.ID',
+    'IsActive',
+    'IsEditable',
+  ],
+  dataExtension: [
+    'ObjectID',
+    'CustomerKey',
+    'CategoryID',
+    'Description',
+    'IsSendable',
+    'IsTestable',
+    'Name',
+  ],
+  senderProfile: [
+    'ObjectID',
+    'CustomerKey',
+    'Name',
+    'FromName',
+    'FromAddress',
+    'Description',
+  ],
+};
