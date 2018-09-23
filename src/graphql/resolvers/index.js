@@ -1,11 +1,18 @@
-module.exports = {
-  /**
-   *
-   */
-  Query: {
+const deepAssign = require('deep-assign');
+
+const dataFolder = require('./data-folder');
+
+module.exports = deepAssign(
+  dataFolder,
+  {
     /**
      *
      */
-    ping: () => 'pong',
+    Query: {
+      /**
+       *
+       */
+      ping: () => 'pong',
+    },
   },
-};
+);

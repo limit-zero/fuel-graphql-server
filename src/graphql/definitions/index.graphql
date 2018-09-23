@@ -1,3 +1,14 @@
+# import *, *.Query from 'data-extension.graphql'
+# import *, *.Query from 'data-folder.graphql'
+
 type Query {
   ping: String!
+}
+
+input ObjectIDInput {
+  id: ID!
+}
+
+input IntegerIDInput {
+  id: Int!
 }

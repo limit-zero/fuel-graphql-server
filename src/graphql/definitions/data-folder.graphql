@@ -1,0 +1,38 @@
+type Query {
+  DataFolderDataExtension(input: ObjectIDInput!): DataFolderDataExtension
+}
+
+interface DataFolderInterface {
+  ObjectID: ID!
+  ID: Int!
+  CustomerKey: String
+
+  AllowChildren: Boolean!
+  ContentType: String!
+  Description: String
+  Name: String!
+  IsActive: Boolean!
+  IsEditable: Boolean!
+}
+
+type DataFolderDataExtension implements DataFolderInterface {
+  ObjectID: ID!
+  ID: Int!
+  CustomerKey: String
+
+  AllowChildren: Boolean!
+  ContentType: String!
+  Description: String
+  Name: String!
+  IsActive: Boolean!
+  IsEditable: Boolean!
+
+  SubFolders: [DataFolderDataExtension]!
+  DataExtensions(input: DataFolderDataExtensionsInput = {}): [DataExtension]!
+}
+
+input DataFolderDataExtensionsInput {
+  # a null value includes both, true only true, false only false
+  IsSendable: Boolean
+  IsTestable: Boolean
+}
