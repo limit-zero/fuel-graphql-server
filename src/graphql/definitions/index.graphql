@@ -1,6 +1,7 @@
 # import *, *.Query from 'data-extension.graphql'
 # import *, *.Query from 'data-folder.graphql'
 # import *, *.Query from 'filter-definition.graphql'
+# import *, *.Query from 'group.graphql'
 # import *, *.Query from 'list.graphql'
 # import *, *.Query from 'publication.graphql'
 

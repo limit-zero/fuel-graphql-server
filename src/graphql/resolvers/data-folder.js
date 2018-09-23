@@ -30,6 +30,8 @@ module.exports = {
           return 'DataFolderDataExtension';
         case 'filterdefinition':
           return 'DataFolderFilterDefinition';
+        case 'group':
+          return 'DataFolderGroup';
         case 'list':
           return 'DataFolderList';
         case 'publication':
@@ -70,6 +72,21 @@ module.exports = {
     FilterDefinitions: async (obj) => {
       const results = await fuel.find('FilterDefinition', {
         leftOperand: 'CategoryID',
+        operator: 'equals',
+        rightOperand: Number(obj.ID),
+      });
+      return sortBy(results, 'Name');
+    },
+  },
+
+  /**
+   *
+   */
+  DataFolderGroup: {
+    ...commonResolvers,
+    Groups: async (obj) => {
+      const results = await fuel.find('Group', {
+        leftOperand: 'Category',
         operator: 'equals',
         rightOperand: Number(obj.ID),
       });
@@ -155,6 +172,26 @@ module.exports = {
           leftOperand: 'ContentType',
           operator: 'equals',
           rightOperand: 'filterdefinition',
+        },
+      });
+    },
+
+    /**
+     *
+     */
+    DataFolderGroup: (_, { input }) => {
+      const { ObjectID } = input;
+      return fuel.findOne('DataFolder', {
+        leftOperand: {
+          leftOperand: 'ObjectID',
+          operator: 'equals',
+          rightOperand: ObjectID,
+        },
+        operator: 'AND',
+        rightOperand: {
+          leftOperand: 'ContentType',
+          operator: 'equals',
+          rightOperand: 'group',
         },
       });
     },

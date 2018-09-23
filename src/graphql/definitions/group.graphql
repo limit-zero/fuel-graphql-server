@@ -1,0 +1,10 @@
+type Group {
+  ObjectID: ID!
+  ID: Int!
+
+  Description: String
+  Category: String!
+  Name: String!
+
+  Folder: DataFolder!
+}
