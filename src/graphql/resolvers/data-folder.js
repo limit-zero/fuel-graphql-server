@@ -248,5 +248,45 @@ module.exports = {
       });
       return sortBy(results, 'Name');
     },
+
+    /**
+     *
+     */
+    DataExtensionDataFolders: async () => {
+      const results = await fuel.find('DataFolder', {
+        leftOperand: {
+          leftOperand: 'ParentFolder.ID',
+          operator: 'equals',
+          rightOperand: 0,
+        },
+        operator: 'AND',
+        rightOperand: {
+          leftOperand: 'ContentType',
+          operator: 'equals',
+          rightOperand: 'dataextension',
+        },
+      });
+      return sortBy(results, 'Name');
+    },
+
+    /**
+     *
+     */
+    PublicationDataFolders: async () => {
+      const results = await fuel.find('DataFolder', {
+        leftOperand: {
+          leftOperand: 'ParentFolder.ID',
+          operator: 'equals',
+          rightOperand: 0,
+        },
+        operator: 'AND',
+        rightOperand: {
+          leftOperand: 'ContentType',
+          operator: 'equals',
+          rightOperand: 'publication',
+        },
+      });
+      return sortBy(results, 'Name');
+    },
   },
 };

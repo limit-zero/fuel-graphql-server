@@ -2,6 +2,9 @@ type Query {
   DataFolder(input: ObjectIDInput!): DataFolderInterface
   DataFolders(input: DataFoldersQueryInput = {}): [DataFolderInterface]!
 
+  DataExtensionDataFolders: [DataFolderDataExtension]!
+  PublicationDataFolders: [DataFolderDataExtension]!
+
   DataFolderDataExtension(input: ObjectIDInput!): DataFolderDataExtension
   DataFolderFilterDefinition(input: ObjectIDInput!): DataFolderFilterDefinition
   DataFolderGroup(input: ObjectIDInput!): DataFolderGroup
