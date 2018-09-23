@@ -1,5 +1,5 @@
 module.exports = {
-  dataFolder: [
+  DataFolder: [
     'ObjectID',
     'ID',
     'CustomerKey',
@@ -12,7 +12,7 @@ module.exports = {
     'IsActive',
     'IsEditable',
   ],
-  dataExtension: [
+  DataExtension: [
     'ObjectID',
     'CustomerKey',
     'CategoryID',
@@ -21,7 +21,7 @@ module.exports = {
     'IsTestable',
     'Name',
   ],
-  senderProfile: [
+  SenderProfile: [
     'ObjectID',
     'CustomerKey',
     'Name',

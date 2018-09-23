@@ -22,11 +22,15 @@ module.exports = {
     ParentFolder: (obj) => {
       const ObjectID = refID(obj, 'ParentFolder', 'ObjectID');
       if (!ObjectID) return null;
-      return fuel.resource('data-folder').findByObjectId(ObjectID);
+      return fuel.findByObjectId('DataFolder', ObjectID);
     },
     SubFolders: async (obj) => {
       const { ObjectID } = obj;
-      const results = await fuel.resource('data-folder').findChildrenForObjectId(ObjectID);
+      const results = await fuel.find('DataFolder', {
+        leftOperand: 'ParentFolder.ObjectID',
+        operator: 'equals',
+        rightOperand: ObjectID,
+      });
       return sortBy(results, 'Name');
     },
   },
@@ -37,18 +41,18 @@ module.exports = {
   Query: {
     DataFolder: async (_, { input }) => {
       const { ObjectID } = input;
-      return fuel.resource('data-folder').findByObjectId(ObjectID);
+      return fuel.findByObjectId('DataFolder', ObjectID);
     },
 
     /**
      *
      */
-    AllDataFolders: async (_, { input }) => {
-      const { rootOnly } = input;
-      let results = [];
-      if (rootOnly) {
-        results = await fuel.resource('data-folder').findChildrenForId(0);
-      }
+    AllDataFolders: async () => {
+      const results = await fuel.find('DataFolder', {
+        leftOperand: 'ParentFolder.ID',
+        operator: 'equals',
+        rightOperand: 0,
+      });
       return sortBy(results, 'Name');
     },
   },

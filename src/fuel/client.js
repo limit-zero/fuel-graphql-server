@@ -1,5 +1,5 @@
 const FuelSoap = require('fuel-soap');
-const resources = require('./resources');
+const allProps = require('./props');
 
 const { isArray } = Array;
 
@@ -12,7 +12,6 @@ class FuelClient {
   constructor(options, clientId) {
     this.client = new FuelSoap(options);
     this.clientId = clientId;
-    this.resources = resources(this);
   }
 
   /**
@@ -123,9 +122,9 @@ class FuelClient {
    * @param {object} filter
    * @param {?array} props
    */
-  async find(type, filter, props = ['ObjectID']) {
-    const body = await this.retrieve(type, props, { filter });
-    const result = this.formatBody(body, false);
+  async find(type, filter, props) {
+    const body = await this.retrieve(type, FuelClient.propsFor(type, props), { filter });
+    const result = FuelClient.formatBody(body, false);
     return result;
   }
 
@@ -136,9 +135,9 @@ class FuelClient {
    * @param {object} filter
    * @param {?array} props
    */
-  async findOne(type, filter, props = ['ObjectID']) {
-    const body = await this.retrieve(type, props, { filter });
-    const result = this.formatBody(body, true);
+  async findOne(type, filter, props) {
+    const body = await this.retrieve(type, FuelClient.propsFor(type, props), { filter });
+    const result = FuelClient.formatBody(body, true);
     return result;
   }
 
@@ -174,10 +173,20 @@ class FuelClient {
 
   /**
    *
+   * @param {string} type
+   * @param {?array} props
+   */
+  static propsFor(type, props) {
+    if (isArray(props) && props.length) return props;
+    return allProps[type] || ['ObjectId'];
+  }
+
+  /**
+   *
    * @param {object} body
    * @param {boolean} [asOne=false]
    */
-  formatBody(body, asOne = false) { // eslint-disable-line class-methods-use-this
+  static formatBody(body, asOne = false) {
     const results = (body && isArray(body.Results)) ? body.Results.slice() : [];
     if (asOne) return results.shift() || null;
     return results;

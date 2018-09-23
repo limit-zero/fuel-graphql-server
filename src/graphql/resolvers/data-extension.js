@@ -5,7 +5,7 @@ module.exports = {
    *
    */
   DataExtension: {
-    Folder: obj => fuel.resource('data-folder').findById(obj.CategoryID),
+    Folder: obj => fuel.findById('DataFolder', obj.CategoryID),
   },
 
   /**
@@ -17,7 +17,7 @@ module.exports = {
      */
     DataExtension: (_, { input }) => {
       const { ObjectID } = input;
-      return fuel.resource('data-extension').findByObjectId(ObjectID);
+      return fuel.findByObjectId('DataExtension', ObjectID);
     },
   },
 };
