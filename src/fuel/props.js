@@ -28,6 +28,14 @@ module.exports = {
     'Description',
     'Name',
   ],
+  List: [
+    'ObjectID',
+    'ID',
+    'CustomerKey',
+    'Description',
+    'Category',
+    'ListName',
+  ],
   Publication: [
     'ID',
     'Category',

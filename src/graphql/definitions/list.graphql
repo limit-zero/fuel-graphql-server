@@ -1,0 +1,11 @@
+type List {
+  ObjectID: ID!
+  ID: Int!
+  CustomerKey: String
+
+  Description: String
+  Category: String!
+  ListName: String!
+
+  Folder: DataFolder!
+}
