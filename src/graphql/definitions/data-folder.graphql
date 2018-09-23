@@ -1,4 +1,6 @@
 type Query {
+  DataFolder(input: ObjectIDInput!): DataFolderInterface
+  AllDataFolders(input: AllDataFoldersQueryInput = {}): [DataFolderInterface]!
   DataFolderDataExtension(input: ObjectIDInput!): DataFolderDataExtension
 }
 
@@ -11,8 +13,27 @@ interface DataFolderInterface {
   ContentType: String!
   Description: String
   Name: String!
-  IsActive: Boolean!
-  IsEditable: Boolean!
+  IsActive: Boolean! @booleanValue
+  IsEditable: Boolean! @booleanValue
+
+  ParentFolder: DataFolder
+  SubFolders: [DataFolder]!
+}
+
+type DataFolder implements DataFolderInterface {
+  ObjectID: ID!
+  ID: Int!
+  CustomerKey: String
+
+  AllowChildren: Boolean!
+  ContentType: String!
+  Description: String
+  Name: String!
+  IsActive: Boolean! @booleanValue
+  IsEditable: Boolean! @booleanValue
+
+  ParentFolder: DataFolder
+  SubFolders: [DataFolder]!
 }
 
 type DataFolderDataExtension implements DataFolderInterface {
@@ -27,8 +48,14 @@ type DataFolderDataExtension implements DataFolderInterface {
   IsActive: Boolean! @booleanValue
   IsEditable: Boolean! @booleanValue
 
-  SubFolders: [DataFolderDataExtension]!
+  ParentFolder: DataFolder
+  SubFolders: [DataFolder]!
+
   DataExtensions(input: DataFolderDataExtensionsInput = {}): [DataExtension]!
+}
+
+input AllDataFoldersQueryInput {
+  rootOnly: Boolean = false
 }
 
 input DataFolderDataExtensionsInput {

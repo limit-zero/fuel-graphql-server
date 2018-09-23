@@ -16,8 +16,8 @@ module.exports = {
      *
      */
     DataExtension: (_, { input }) => {
-      const { id } = input;
-      return fuel.resource('data-extension').findByObjectId(id);
+      const { ObjectID } = input;
+      return fuel.resource('data-extension').findByObjectId(ObjectID);
     },
   },
 };

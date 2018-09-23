@@ -8,6 +8,7 @@ module.exports = {
     'Description',
     'Name',
     'ParentFolder.ID',
+    'ParentFolder.ObjectID',
     'IsActive',
     'IsEditable',
   ],

@@ -5,19 +5,21 @@ class DataExtension extends Resource {
   /**
    *
    * @async
+   * @param {string} id
+   * @param {?array} props
+   */
+  async findById(id, props = dataExtensionProps) {
+    return this.fuel.findById('DataExtension', id, props);
+  }
+
+  /**
+   *
+   * @async
    * @param {string} oid
    * @param {?array} props
    */
   async findByObjectId(oid, props = dataExtensionProps) {
-    const filter = {
-      leftOperand: 'ObjectID',
-      operator: 'equals',
-      rightOperand: oid,
-    };
-    const body = await this.fuel.retrieve('DataExtension', props, { filter });
-    const result = this.fuel.formatBody(body, true);
-    if (!result) return null;
-    return result;
+    return this.fuel.findByObjectId('DataExtension', oid, props);
   }
 }
 

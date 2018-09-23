@@ -118,12 +118,68 @@ class FuelClient {
 
   /**
    *
+   * @async
+   * @param {string} type
+   * @param {object} filter
+   * @param {?array} props
+   */
+  async find(type, filter, props = ['ObjectID']) {
+    const body = await this.retrieve(type, props, { filter });
+    const result = this.formatBody(body, false);
+    return result;
+  }
+
+  /**
+   *
+   * @async
+   * @param {string} type
+   * @param {object} filter
+   * @param {?array} props
+   */
+  async findOne(type, filter, props = ['ObjectID']) {
+    const body = await this.retrieve(type, props, { filter });
+    const result = this.formatBody(body, true);
+    return result;
+  }
+
+  /**
+   *
+   * @param {string} type
+   * @param {number} id
+   * @param {?array} props
+   */
+  findById(type, id, props) {
+    const filter = {
+      leftOperand: 'ID',
+      operator: 'equals',
+      rightOperand: Number(id),
+    };
+    return this.findOne(type, filter, props);
+  }
+
+  /**
+   *
+   * @param {string} type
+   * @param {string} oid
+   * @param {?array} props
+   */
+  findByObjectId(type, oid, props) {
+    const filter = {
+      leftOperand: 'ObjectID',
+      operator: 'equals',
+      rightOperand: oid,
+    };
+    return this.findOne(type, filter, props);
+  }
+
+  /**
+   *
    * @param {object} body
    * @param {boolean} [asOne=false]
    */
   formatBody(body, asOne = false) { // eslint-disable-line class-methods-use-this
     const results = (body && isArray(body.Results)) ? body.Results.slice() : [];
-    if (asOne) return results.shift();
+    if (asOne) return results.shift() || null;
     return results;
   }
 }
