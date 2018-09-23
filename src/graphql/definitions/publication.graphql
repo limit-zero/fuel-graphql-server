@@ -1,0 +1,8 @@
+type Publication {
+  ID: Int!
+
+  Name: String!
+  Category: String!
+
+  Folder: DataFolder!
+}

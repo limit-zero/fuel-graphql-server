@@ -28,6 +28,11 @@ module.exports = {
     'Description',
     'Name',
   ],
+  Publication: [
+    'ID',
+    'Category',
+    'Name',
+  ],
   SenderProfile: [
     'ObjectID',
     'CustomerKey',

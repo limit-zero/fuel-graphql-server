@@ -25,13 +25,16 @@ module.exports = {
    */
   DataFolderInterface: {
     __resolveType({ ContentType }) {
-      if (ContentType === 'dataextension') {
-        return 'DataFolderDataExtension';
+      switch (ContentType) {
+        case 'dataextension':
+          return 'DataFolderDataExtension';
+        case 'filterdefinition':
+          return 'DataFolderFilterDefinition';
+        case 'publication':
+          return 'DataFolderPublication';
+        default:
+          return 'DataFolder';
       }
-      if (ContentType === 'filterdefinition') {
-        return 'DataFolderFilterDefinition';
-      }
-      return 'DataFolder';
     },
   },
 
@@ -65,6 +68,22 @@ module.exports = {
     FilterDefinitions: async (obj) => {
       const results = await fuel.find('FilterDefinition', {
         leftOperand: 'CategoryID',
+        operator: 'equals',
+        rightOperand: Number(obj.ID),
+      });
+      return sortBy(results, 'Name');
+    },
+  },
+
+  /**
+   *
+   */
+  DataFolderPublication: {
+    ...commonResolvers,
+    Publications: async (obj) => {
+      console.info(obj);
+      const results = await fuel.find('Publication', {
+        leftOperand: 'Category',
         operator: 'equals',
         rightOperand: Number(obj.ID),
       });
@@ -120,6 +139,26 @@ module.exports = {
           leftOperand: 'ContentType',
           operator: 'equals',
           rightOperand: 'filterdefinition',
+        },
+      });
+    },
+
+    /**
+     *
+     */
+    DataFolderPublication: (_, { input }) => {
+      const { ObjectID } = input;
+      return fuel.findOne('DataFolder', {
+        leftOperand: {
+          leftOperand: 'ObjectID',
+          operator: 'equals',
+          rightOperand: ObjectID,
+        },
+        operator: 'AND',
+        rightOperand: {
+          leftOperand: 'ContentType',
+          operator: 'equals',
+          rightOperand: 'publication',
         },
       });
     },

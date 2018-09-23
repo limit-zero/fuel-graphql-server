@@ -4,6 +4,7 @@ type Query {
 
   DataFolderDataExtension(input: ObjectIDInput!): DataFolderDataExtension
   DataFolderFilterDefinition(input: ObjectIDInput!): DataFolderFilterDefinition
+  DataFolderPublication(input: ObjectIDInput!): DataFolderPublication
 }
 
 interface DataFolderInterface {
@@ -72,6 +73,24 @@ type DataFolderFilterDefinition implements DataFolderInterface {
   SubFolders: [DataFolder]!
 
   FilterDefinitions: [FilterDefinition]!
+}
+
+type DataFolderPublication implements DataFolderInterface {
+  ObjectID: ID!
+  ID: Int!
+  CustomerKey: String
+
+  AllowChildren: Boolean!
+  ContentType: String!
+  Description: String
+  Name: String!
+  IsActive: Boolean! @booleanValue
+  IsEditable: Boolean! @booleanValue
+
+  ParentFolder: DataFolder
+  SubFolders: [DataFolder]!
+
+  Publications: [Publication]!
 }
 
 input DataFoldersQueryInput {
