@@ -30,6 +30,7 @@
     "graphql": "^0.13.0",
     "graphql-import": "^0.7.1",
     "graphql-tools": "^4.0.0",
+    "graphql-type-json": "^0.2.1",
     "helmet": "^3.13.0",
     "object-path": "^0.11.4",
     "validator": "^10.7.1"
