@@ -12,5 +12,5 @@ type DataExtension {
   Name: String!
   CategoryID: String!
 
-  Folder: DataFolderDataExtension!
+  Folder: DataFolder!
 }

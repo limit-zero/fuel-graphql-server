@@ -1,6 +1,7 @@
 type Query {
   DataFolder(input: ObjectIDInput!): DataFolderInterface
   DataFolders(input: DataFoldersQueryInput = {}): [DataFolderInterface]!
+
   DataFolderDataExtension(input: ObjectIDInput!): DataFolderDataExtension
 }
 
