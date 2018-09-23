@@ -81,7 +81,6 @@ module.exports = {
   DataFolderPublication: {
     ...commonResolvers,
     Publications: async (obj) => {
-      console.info(obj);
       const results = await fuel.find('Publication', {
         leftOperand: 'Category',
         operator: 'equals',
