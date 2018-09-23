@@ -1,0 +1,8 @@
+{
+  "name": "fuel-graphql-server",
+  "version": "0.1.0",
+  "description": "An Express GraphQL server for the Salesforce Marketing Cloud (FuelSDK)",
+  "main": "src/index.js",
+  "author": "Jacob Bare <jacob@limit0.io>",
+  "license": "MIT"
+}
