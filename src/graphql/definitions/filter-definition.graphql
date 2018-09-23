@@ -1,0 +1,9 @@
+type FilterDefinition {
+  ObjectID: ID!
+
+  Name: String!
+  Description: String
+  CategoryID: String!
+
+  Folder: DataFolder!
+}

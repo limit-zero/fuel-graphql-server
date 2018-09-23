@@ -1,5 +1,6 @@
 # import *, *.Query from 'data-extension.graphql'
 # import *, *.Query from 'data-folder.graphql'
+# import *, *.Query from 'filter-definition.graphql'
 
 directive @booleanValue(localField: String) on FIELD_DEFINITION
 

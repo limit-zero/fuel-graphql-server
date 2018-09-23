@@ -21,6 +21,13 @@ module.exports = {
     'IsTestable',
     'Name',
   ],
+  FilterDefinition: [
+    'ObjectID',
+    'CustomerKey',
+    'CategoryID',
+    'Description',
+    'Name',
+  ],
   SenderProfile: [
     'ObjectID',
     'CustomerKey',

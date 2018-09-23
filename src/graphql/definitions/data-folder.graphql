@@ -3,6 +3,7 @@ type Query {
   DataFolders(input: DataFoldersQueryInput = {}): [DataFolderInterface]!
 
   DataFolderDataExtension(input: ObjectIDInput!): DataFolderDataExtension
+  DataFolderFilterDefinition(input: ObjectIDInput!): DataFolderFilterDefinition
 }
 
 interface DataFolderInterface {
@@ -52,15 +53,27 @@ type DataFolderDataExtension implements DataFolderInterface {
   ParentFolder: DataFolder
   SubFolders: [DataFolder]!
 
-  DataExtensions(input: DataFolderDataExtensionsInput = {}): [DataExtension]!
+  DataExtensions: [DataExtension]!
+}
+
+type DataFolderFilterDefinition implements DataFolderInterface {
+  ObjectID: ID!
+  ID: Int!
+  CustomerKey: String
+
+  AllowChildren: Boolean!
+  ContentType: String!
+  Description: String
+  Name: String!
+  IsActive: Boolean! @booleanValue
+  IsEditable: Boolean! @booleanValue
+
+  ParentFolder: DataFolder
+  SubFolders: [DataFolder]!
+
+  FilterDefinitions: [FilterDefinition]!
 }
 
 input DataFoldersQueryInput {
   filter: JSON
-}
-
-input DataFolderDataExtensionsInput {
-  # a null value includes both, true only true, false only false
-  IsSendable: Boolean
-  IsTestable: Boolean
 }
