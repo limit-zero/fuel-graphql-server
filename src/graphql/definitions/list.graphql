@@ -1,3 +1,7 @@
+type Query {
+  List(input: ObjectIDInput!): List
+}
+
 type List {
   ObjectID: ID!
   ID: Int!
@@ -8,4 +12,13 @@ type List {
   ListName: String!
 
   Folder: DataFolder!
+  ListSubscribers: [ListSubscriber]!
+}
+
+type ListSubscriber {
+  ObjectID: ID!
+  ID: Int!
+
+  SubscriberKey: String!
+  Status: String
 }

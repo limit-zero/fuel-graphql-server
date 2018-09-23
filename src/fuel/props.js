@@ -48,6 +48,13 @@ module.exports = {
     'Category',
     'ListName',
   ],
+  ListSubscriber: [
+    'ObjectID',
+    'ID',
+    'ListID',
+    'SubscriberKey',
+    'Status',
+  ],
   Publication: [
     'ID',
     'Category',
