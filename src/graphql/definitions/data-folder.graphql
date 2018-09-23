@@ -24,8 +24,8 @@ type DataFolderDataExtension implements DataFolderInterface {
   ContentType: String!
   Description: String
   Name: String!
-  IsActive: Boolean!
-  IsEditable: Boolean!
+  IsActive: Boolean! @booleanValue
+  IsEditable: Boolean! @booleanValue
 
   SubFolders: [DataFolderDataExtension]!
   DataExtensions(input: DataFolderDataExtensionsInput = {}): [DataExtension]!

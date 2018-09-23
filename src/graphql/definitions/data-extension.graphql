@@ -7,8 +7,8 @@ type DataExtension {
   CustomerKey: String
 
   Description: String
-  IsSendable: Boolean!
-  IsTestable: Boolean!
+  IsSendable: Boolean! @booleanValue
+  IsTestable: Boolean! @booleanValue
   Name: String!
   CategoryID: String!
 
