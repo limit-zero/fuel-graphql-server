@@ -3,6 +3,7 @@ const sortBy = require('../../utils/sort-by');
 const refID = require('../../utils/ref-id');
 
 const commonResolvers = {
+  Name: ({ Name }) => Name.split(' ').map(s => s.charAt(0).toUpperCase() + s.substring(1)).join(' '),
   ParentFolder: (obj) => {
     const ObjectID = refID(obj, 'ParentFolder', 'ObjectID');
     if (!ObjectID) return null;
@@ -55,10 +56,20 @@ module.exports = {
   DataFolderDataExtension: {
     ...commonResolvers,
     DataExtensions: async (obj) => {
+      // By default, only show sendable DEs.
+      // @todo This should be an input arg.
       const results = await fuel.find('DataExtension', {
-        leftOperand: 'CategoryID',
-        operator: 'equals',
-        rightOperand: Number(obj.ID),
+        leftOperand: {
+          leftOperand: 'CategoryID',
+          operator: 'equals',
+          rightOperand: Number(obj.ID),
+        },
+        operator: 'AND',
+        rightOperand: {
+          leftOperand: 'IsSendable',
+          operator: 'equals',
+          rightOperand: 'true',
+        },
       });
       return sortBy(results, 'Name');
     },
@@ -245,6 +256,23 @@ module.exports = {
         leftOperand: 'ParentFolder.ID',
         operator: 'equals',
         rightOperand: 0,
+      });
+      return sortBy(results, 'Name');
+    },
+
+    ExclusionDataFolders: async () => {
+      const results = await fuel.find('DataFolder', {
+        leftOperand: {
+          leftOperand: 'ParentFolder.ID',
+          operator: 'equals',
+          rightOperand: 0,
+        },
+        operator: 'AND',
+        rightOperand: {
+          leftOperand: 'ContentType',
+          operator: 'IN',
+          rightOperand: ['list', 'group', 'dataextension'],
+        },
       });
       return sortBy(results, 'Name');
     },
