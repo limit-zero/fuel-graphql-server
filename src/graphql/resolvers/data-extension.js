@@ -1,3 +1,4 @@
+const objectPath = require('object-path');
 const fuel = require('../../fuel');
 const sortBy = require('../../utils/sort-by');
 
@@ -44,6 +45,9 @@ module.exports = {
         return { [Name]: Value };
       });
     },
+
+    SendableDataExtensionField: obj => objectPath.get(obj, 'SendableDataExtensionField.Name'),
+    SendableSubscriberField: obj => objectPath.get(obj, 'SendableSubscriberField.Name'),
   },
 
   /**

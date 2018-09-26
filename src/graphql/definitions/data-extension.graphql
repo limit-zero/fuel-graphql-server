@@ -11,10 +11,14 @@ type DataExtension {
   IsTestable: Boolean! @booleanValue
   Name: String!
   CategoryID: String!
+  SendableDataExtensionField: String
+  SendableSubscriberField: String
+  Status: String
 
   Fields: [DataExtensionField]!
   Folder: DataFolder!
   Rows: [JSON]!
+
 }
 
 type DataExtensionField {

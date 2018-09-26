@@ -20,6 +20,9 @@ module.exports = {
     'IsSendable',
     'IsTestable',
     'Name',
+    'Status',
+    'SendableDataExtensionField.Name',
+    'SendableSubscriberField.Name',
   ],
   DataExtensionField: [
     'ObjectID',
