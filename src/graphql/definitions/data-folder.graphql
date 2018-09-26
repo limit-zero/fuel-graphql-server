@@ -27,7 +27,6 @@ interface DataFolderInterface {
   IsEditable: Boolean! @booleanValue
 
   ParentFolder: DataFolder
-  SubFolders: [DataFolder]!
 }
 
 type DataFolder implements DataFolderInterface {
@@ -59,7 +58,7 @@ type DataFolderDataExtension implements DataFolderInterface {
   IsEditable: Boolean! @booleanValue
 
   ParentFolder: DataFolder
-  SubFolders: [DataFolder]!
+  SubFolders: [DataFolderDataExtension]!
 
   DataExtensions: [DataExtension]!
 }
@@ -77,7 +76,7 @@ type DataFolderFilterDefinition implements DataFolderInterface {
   IsEditable: Boolean! @booleanValue
 
   ParentFolder: DataFolder
-  SubFolders: [DataFolder]!
+  SubFolders: [DataFolderFilterDefinition]!
 
   FilterDefinitions: [FilterDefinition]!
 }
@@ -95,7 +94,7 @@ type DataFolderGroup implements DataFolderInterface {
   IsEditable: Boolean! @booleanValue
 
   ParentFolder: DataFolder
-  SubFolders: [DataFolder]!
+  SubFolders: [DataFolderGroup]!
 
   Groups: [Group]!
 }
@@ -113,7 +112,7 @@ type DataFolderList implements DataFolderInterface {
   IsEditable: Boolean! @booleanValue
 
   ParentFolder: DataFolder
-  SubFolders: [DataFolder]!
+  SubFolders: [DataFolderList]!
 
   Lists: [List]!
 }
@@ -131,7 +130,7 @@ type DataFolderPublication implements DataFolderInterface {
   IsEditable: Boolean! @booleanValue
 
   ParentFolder: DataFolder
-  SubFolders: [DataFolder]!
+  SubFolders: [DataFolderPublication]!
 
   Publications: [Publication]!
 }
