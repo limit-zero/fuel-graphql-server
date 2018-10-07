@@ -6,6 +6,7 @@ const dataFolder = require('./data-folder');
 const filterDefinition = require('./filter-definition');
 const list = require('./list');
 const publication = require('./publication');
+const sendClassification = require('./send-classification');
 const senderProfile = require('./sender-profile');
 
 module.exports = deepAssign(
@@ -14,6 +15,7 @@ module.exports = deepAssign(
   filterDefinition,
   list,
   publication,
+  sendClassification,
   senderProfile,
   {
     /**

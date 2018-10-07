@@ -63,6 +63,12 @@ module.exports = {
     'Category',
     'Name',
   ],
+  SendClassification: [
+    'ObjectID',
+    'CustomerKey',
+    'Name',
+    'SendClassificationType',
+  ],
   SenderProfile: [
     'ObjectID',
     'CustomerKey',

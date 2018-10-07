@@ -1,0 +1,11 @@
+type Query {
+  SendClassifications: [SendClassification]!
+}
+
+type SendClassification {
+  ObjectID: ID!
+  CustomerKey: String
+
+  Name: String!
+  SendClassificationType: String
+}
